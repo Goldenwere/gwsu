@@ -1,0 +1,47 @@
+[Bb]uild
+[Bb]uilds
+[Ll]ibrary
+[Ll]ogs
+[Tt]emp
+[Oo]bj
+[Mm]emoryCaptures/
+[Uu]ser[Ss]ettings/
+*.apk
+*.unitypackage
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+sysinfo.txt
+crashlytics-build.properties
+
+# Packed Addressables
+[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+
+# Android files
+.gradle/
+[Aa]ssets/[Ss]treamingAssets/aa.meta
+[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# VS/Jetbrains files
+[Aa]ssets/Plugins/Editor/JetBrains*
+.vs/
+ExportedObj/
+.consulo/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# trick to ignore folder metas: ignore all metas, but include all metas except folders
+*.meta
+!*.*.meta
