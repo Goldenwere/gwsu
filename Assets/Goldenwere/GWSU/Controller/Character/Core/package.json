@@ -1,0 +1,12 @@
+{
+    "name": "goldenwere.gwsu.controller.character.core",
+    "version": "0.0.1",
+    "displayName": "GWSU Character Controller",
+    "description": "The Goldenwere Character Controller for Unity",
+    "unity": "2019.4",
+    "author": {
+        "name": "Goldenwere",
+        "email": "contactgoldenwere@gmail.com",
+        "url": "https://goldenwere.github.io/"
+    }
+}
