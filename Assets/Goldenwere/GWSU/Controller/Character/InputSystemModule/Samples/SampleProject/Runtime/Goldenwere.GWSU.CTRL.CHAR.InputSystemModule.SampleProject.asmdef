@@ -1,0 +1,17 @@
+{
+    "name": "Goldenwere.GWSU.CTRL.CHAR.InputSystemModule.SampleProject",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7118095471e21fa4782c349e8d42f7a3",
+        "GUID:4d883c6428850a645aecf33a1ee4c832"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
