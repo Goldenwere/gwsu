@@ -15,6 +15,8 @@ namespace Goldenwere.GWSU.CTRL.CHAR.InputSystemModule
             public Action<InputAction.CallbackContext> started;
         }
 
+        public bool preferToggledInputs;
+
         private Dictionary<Guid, Callbacks> registeredCallbacks;
 
         private Dictionary<Guid, Callbacks> RegisteredCallbacks
@@ -33,16 +35,35 @@ namespace Goldenwere.GWSU.CTRL.CHAR.InputSystemModule
         {
             if (TryGetReference(_action.Emitter, out InputActionReference _reference))
             {
+                Action<InputAction.CallbackContext> canceled = (InputAction.CallbackContext ctx) =>
+                {
+                    switch (_action.Type)
+                    {
+                        case ModuleActionType.HeldOrPressed:
+                            if (!preferToggledInputs)
+                            {
+                                _action.Listener.Invoke();
+                            }
+                            break;
+                        case ModuleActionType.Held:
+                            _action.Listener.Invoke();
+                            break;
+                    }
+                };
+
                 Action<InputAction.CallbackContext> performed = (InputAction.CallbackContext ctx) =>
                 {
                     _action.Listener.Invoke();
                 };
+
+                _reference.action.canceled += canceled;
                 _reference.action.performed += performed;
                 RegisteredCallbacks.Add
                 (
                     _action.GUID,
                     new Callbacks
                     {
+                        canceled = canceled,
                         performed = performed,
                     }
                 );
@@ -102,7 +123,9 @@ namespace Goldenwere.GWSU.CTRL.CHAR.InputSystemModule
         {
             if (CheckForCallback(_id))
             {
+                _reference.action.canceled -= RegisteredCallbacks[_id].canceled;
                 _reference.action.performed -= RegisteredCallbacks[_id].performed;
+                _reference.action.started -= RegisteredCallbacks[_id].started;
                 RegisteredCallbacks.Remove(_id);
             }
         }
