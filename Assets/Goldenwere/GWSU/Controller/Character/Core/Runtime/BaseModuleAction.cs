@@ -37,6 +37,7 @@ namespace Goldenwere.GWSU.CTRL.CHAR.Core
     }
 
     public class BaseModuleAction<T>
+        where T : struct
     {
         [SerializeField] private ScriptableObject emitter;
         [SerializeField] private Action<T> listener;

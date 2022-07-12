@@ -74,7 +74,54 @@ namespace Goldenwere.GWSU.CTRL.CHAR.InputSystemModule
         {
             if (TryGetReference(_action.Emitter, out InputActionReference _reference))
             {
+                Action<InputAction.CallbackContext> canceled = (InputAction.CallbackContext ctx) =>
+                {
+                    switch (_action.Type)
+                    {
+                        case ModuleActionType.Held:
+                            _action.Listener.Invoke(ctx.ReadValue<T>());
+                            break;
+                        case ModuleActionType.HeldOrPressed:
+                            if (!preferToggledInputs)
+                            {
+                                _action.Listener.Invoke(ctx.ReadValue<T>());
+                            }
+                            break;
+                    }
+                };
+                Action<InputAction.CallbackContext> performed = (InputAction.CallbackContext ctx) =>
+                {
+                    switch (_action.Type)
+                    {
+                        case ModuleActionType.Held:
+                            _action.Listener.Invoke(ctx.ReadValue<T>());
+                            break;
+                    }
+                };
+                Action<InputAction.CallbackContext> started = (InputAction.CallbackContext ctx) =>
+                {
+                    switch (_action.Type)
+                    {
+                        case ModuleActionType.HeldOrPressed:
+                        case ModuleActionType.Pressed:
+                            _action.Listener.Invoke(ctx.ReadValue<T>());
+                            break;
+                    }
+                };
 
+                _reference.action.canceled += canceled;
+                _reference.action.performed += performed;
+                _reference.action.started += started;
+                RegisteredCallbacks.Add
+                (
+                    _action.GUID,
+                    new Callbacks
+                    {
+                        canceled = canceled,
+                        performed = performed,
+                        started = started,
+                    }
+                );
             }
         }
 

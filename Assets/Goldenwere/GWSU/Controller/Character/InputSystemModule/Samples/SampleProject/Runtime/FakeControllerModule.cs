@@ -14,30 +14,32 @@ namespace Goldenwere.GWSU.CTRL.CHAR.InputSystemModule.SampleProject
         private BaseModuleAction actionOnJump;
         private BaseModuleAction<Vector2> actionOnMovement;
 
+        private Vector2 valueMovement;
+
         private void Awake()
         {
             actionOnCrouch = new BaseModuleAction(OnCrouch, emitterOnCrouch, ModuleActionType.HeldOrPressed);
             actionOnJump = new BaseModuleAction(OnJump, emitterOnJump, ModuleActionType.Pressed);
-            actionOnMovement = new BaseModuleAction<Vector2>(OnMovement, emitterOnJump, ModuleActionType.Held);
+            actionOnMovement = new BaseModuleAction<Vector2>(OnMovement, emitterOnMovement, ModuleActionType.Held);
         }
 
         private void OnEnable()
         {
             module.RegisterModuleAction(actionOnCrouch);
             module.RegisterModuleAction(actionOnJump);
-            //module.RegisterModuleAction(actionOnMovement);
+            module.RegisterModuleAction(actionOnMovement);
         }
 
         private void OnDisable()
         {
             module.UnregisterModuleAction(actionOnCrouch);
             module.UnregisterModuleAction(actionOnJump);
-            //module.UnregisterModuleAction(actionOnMovement);
+            module.UnregisterModuleAction(actionOnMovement);
         }
 
         private void OnCrouch()
         {
-            Debug.Log($"Crouched"); 
+            Debug.Log($"Crouched");
         }
 
         private void OnJump()
@@ -47,7 +49,16 @@ namespace Goldenwere.GWSU.CTRL.CHAR.InputSystemModule.SampleProject
 
         private void OnMovement(Vector2 value)
         {
-            Debug.Log($"Value was: {value}");
+            valueMovement = value;
+        }
+
+        private void OnGUI()
+        {
+            GUI.Label(
+                new Rect(10, 10, Screen.width - 10, 64),
+                $"{valueMovement}",
+                new GUIStyle { fontSize = 64 }
+            );
         }
     }
 }

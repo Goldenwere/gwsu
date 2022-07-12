@@ -146,6 +146,17 @@
                 },
                 {
                     "name": "",
+                    "id": "c7d6f12e-584e-4cf2-8a7e-dce439e3090d",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "278ae5dd-3736-406f-84da-7131d6edd649",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -157,8 +168,30 @@
                 },
                 {
                     "name": "",
+                    "id": "6f9a5303-598f-4014-83c7-ebd7aec92543",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "ec38fa57-693b-4a36-a820-5d76df95e551",
                     "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f54cf218-de33-47e3-aaa7-b3703c548fa3",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
